@@ -72,5 +72,5 @@ for sp in splits:
 
             
 
-            im_AB = np.concatenate([im_A, im_B], 1)
+            im_AB = np.concatenate([im_B, im_A], 1)
             cv2.imwrite(path_AB, im_AB)
