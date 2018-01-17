@@ -1,6 +1,5 @@
 .DS_Store
 debug*
-datasets/
 checkpoints/faces_pix2pix/*.pth
 results/
 build/
