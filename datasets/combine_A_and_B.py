@@ -66,7 +66,6 @@ for sp in splits:
             
             # For Real images:
             if img_fold_A == "faces/A/real":
-                im_B = im_B[:,239:(1024-239),:]
                 im_B = cv2.resize(im_B, (im_A.shape[1], im_A.shape[0]))
             print("im_A.shape, im_B.shape:", im_A.shape, im_B.shape)
 
