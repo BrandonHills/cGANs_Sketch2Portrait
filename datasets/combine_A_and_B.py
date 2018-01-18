@@ -4,9 +4,9 @@ import cv2
 import argparse
 
 parser = argparse.ArgumentParser('create image pairs')
-parser.add_argument('--fold_A', dest='fold_A', help='input directory for image A', type=str, default='faces/A')
-parser.add_argument('--fold_B', dest='fold_B', help='input directory for image B', type=str, default='faces/B')
-parser.add_argument('--fold_AB', dest='fold_AB', help='output directory', type=str, default='faces/A_B')
+parser.add_argument('--fold_A', dest='fold_A', help='input directory for image A', type=str, default='combine/A')
+parser.add_argument('--fold_B', dest='fold_B', help='input directory for image B', type=str, default='combine/B')
+parser.add_argument('--fold_AB', dest='fold_AB', help='output directory', type=str, default='faces/train')
 parser.add_argument('--num_imgs', dest='num_imgs', help='number of images',type=int, default=1000000)
 parser.add_argument('--use_AB', dest='use_AB', help='if true: (0001_A, 0001_B) to (0001_AB)',action='store_true')
 args = parser.parse_args()
@@ -56,7 +56,9 @@ for sp in splits:
             name_AB = name_A
             if args.use_AB:
                 name_AB = name_AB.replace('_A.', '.') # remove _A
-            path_AB = os.path.join(img_fold_AB, name_AB)
+            # path_AB = os.path.join(img_fold_AB, name_AB)
+            path_AB = os.path.join(args.fold_AB, name_AB)
+
             im_A = cv2.cvtColor(cv2.imread(path_A), cv2.COLOR_BGR2RGB)
             im_B = cv2.imread(path_B)
 
@@ -72,4 +74,8 @@ for sp in splits:
             
 
             im_AB = np.concatenate([im_B, im_A], 1)
+            print("fold_AB:", img_fold_AB )
             cv2.imwrite(path_AB, im_AB)
+
+
+
